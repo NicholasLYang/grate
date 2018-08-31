@@ -1,31 +1,18 @@
-require "active_record"
+require 'erb'
+require 'yaml'
+require 'dotenv/load'
 
-namespace :app do
-  desc "Update some initially generated files"
-  task update: [ "update:bin" ]
-
-  namespace :update do
-    require "rails/engine/updater"
-    # desc "Adds new executables to the engine bin/ directory"
-    task :bin do
-      Rails::Engine::Updater.run(:create_bin_files)
+namespace :db do
+  desc "Run migrations"
+  task :migrate, [:version] do |t, args|
+    require "sequel/core"
+    config_template = ERB.new(File.read('config/database.yml'))
+    database_config = YAML.load(config_template.result)
+    config = database_config[ENV["ENVIRONMENT"]]
+    Sequel.extension :migration
+    version = args[:version].to_i if args[:version]
+    Sequel.connect("postgres://#{config[:username]}:#{config[:password]}@#{config[:host]}/#{config[:database]}") do |db|
+      Sequel::Migrator.run(db, "db/migrations", target: version)
     end
-  end
-end
-
-task environment: "app:environment"
-
-
-db_namespace = namespace :db do
-    task load_config: :environment do
-    ActiveRecord::Base.configurations       = ActiveRecord::Tasks::DatabaseTasks.database_configuration || {}
-    ActiveRecord::Migrator.migrations_paths = ActiveRecord::Tasks::DatabaseTasks.migrations_paths
-  end
-  task migrate: :load_config do
-    ActiveRecord::Base.configurations.configs_for(Rails.env).each do |db_config|
-      ActiveRecord::Base.establish_connection(db_config.config)
-      ActiveRecord::Tasks::DatabaseTasks.migrate
-    end
-    db_namespace["_dump"].invoke
   end
 end

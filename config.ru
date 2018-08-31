@@ -1,3 +1,4 @@
+require 'dotenv/load'
 require 'json'
 require_relative 'db/database'
 require_relative 'app/schema'

@@ -1,12 +1,10 @@
 require 'sequel'
-require 'sqlite3'
+require 'pg'
+require 'yaml'
+require 'erb'
 
-DATABASE_ENV = "development"
+config_template = ERB.new(File.read('config/database.yml'))
+database_config = YAML.load(config_template.result)
+config = database_config[ENV["ENVIRONMENT"]]
 
-DB = Sequel.connect("sqlite://#{DATABASE_ENV}.db") # requires sqlite3
-
-DB.create_table? :posts do
-  primary_key :id
-  String :title
-  String :content
-end
+Sequel.connect("postgres://#{config[:username]}:#{config[:password]}@#{config[:host]}/#{config[:database]}")
