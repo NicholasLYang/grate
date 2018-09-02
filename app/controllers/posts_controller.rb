@@ -1,7 +1,7 @@
 require_relative "../models/post"
 
-class PostsResolver
-  def self.index
+class PostsController < ApplicationController
+  def index
     Post.all
   end
 
@@ -10,6 +10,7 @@ class PostsResolver
   end
 
   def self.find_by(field, field_name)
+    return Post[field] if field_name == :id
     Post.where("#{field_name}": field)
   end
 end

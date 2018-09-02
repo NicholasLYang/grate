@@ -9,7 +9,8 @@ require_relative './app/types/query_type'
 require_relative './lib/graphql_helpers.rb'
 require_relative './app/models/application_model'
 require_relative './app/models/post'
-require_relative './app/resolvers/posts_resolver.rb'
+require_relative './app/controllers/application_controller.rb'
+require_relative './app/controllers/posts_controller.rb'
 
 class LatticeApplication
   def call(env)
