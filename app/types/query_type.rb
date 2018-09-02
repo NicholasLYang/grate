@@ -1,5 +1,4 @@
 require_relative './post_type'
-require_relative "../resolvers/posts_resolver.rb"
 
 class QueryType < GraphQL::Schema::Object
   description "The query root of this schema"
@@ -14,4 +13,3 @@ class QueryType < GraphQL::Schema::Object
     PostsResolver.show(id)
   end
 end
-       
