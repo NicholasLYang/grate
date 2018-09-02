@@ -13,12 +13,13 @@ class GraphQL::Schema::Object
     model = self.to_s.chomp('Type')
     type_name = self
     model_name = model.downcase
+    controller_name = "#{model_name.pluralize.capitalize}Controller"
+    controller = Object.const_get(controller_name)
     if field_name == :id
       query_name = function_name = model_name
       return_type = type_name
     else
       query_name = "#{model_name}By#{camelize(field_name.to_s)}"
-      puts "QUERY NAME: #{query_name}"
       function_name = "#{model_name}_by_#{field_name}"
       return_type = [type_name]
     end
@@ -30,7 +31,7 @@ class GraphQL::Schema::Object
         argument field_name, field_type, required: true
       end
       define_method function_name do |query_args|
-        PostsController.find_by(query_args[field_name], field_name)
+        controller.find_by(query_args[field_name], field_name)
       end
     end
   end
