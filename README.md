@@ -48,7 +48,7 @@ asking myself), but I figure they'll be useful discussion points.
 - Q: Why did you build this? Rails + GraphQL Ruby works fine.
 - A: Very good question, imaginary person. I've used GraphQL Ruby and
   Rails together in a few different places, such as
-  [StuySpec][https://github.com/stuyspec] and some other hackathon
+  (StuySpec)[https://github.com/stuyspec] and some other hackathon
   projects. It's an excellent combo, in my opinion the most ergonomic
   stack for GraphQL. You don't have to do any complicated library
   connecting (connect the query builder to the GraphQL library to the
