@@ -1,16 +1,26 @@
 class GraphQL::Schema::Object
   include GraphQL::Schema::Member::GraphQLTypeNames
-  
-  def self.queryable_on(field_name, field_type)    
-    model = self
-    model_name = model.to_s.downcase
+
+  def self.camelize(name)
+    name.split('_').collect(&:capitalize).join
+  end
+  def self.is_valid_type_name
+    self.to_s.chars.last(4).join == 'Type'
+  end
+  def self.queryable_on(field_name, field_type)
+    raise NameError,
+          "#{self} is invalid type name. Types must end in -Type" unless is_valid_type_name
+    model = self.to_s.chomp('Type')
+    type_name = self
+    model_name = model.downcase
     if field_name == :id
       query_name = function_name = model_name
-      return_type = Module.const_get("#{model}Type")
+      return_type = type_name
     else
-      query_name = "#{model_name}By#{field_name.capitalize}"
+      query_name = "#{model_name}By#{camelize(field_name.to_s)}"
+      puts "QUERY NAME: #{query_name}"
       function_name = "#{model_name}_by_#{field_name}"
-      return_type = [Module.const_get("#{model}Type")]
+      return_type = [type_name]
     end
     QueryType.class_eval do
       field query_name,

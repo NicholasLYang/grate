@@ -6,4 +6,5 @@ class PostType < GraphQL::Schema::Object
   field :truncated_preview, String, null: false
   queryable_on :id, ID
   queryable_on :title, String
+  queryable_on :truncated_preview, String
 end
