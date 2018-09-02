@@ -5,7 +5,11 @@ class PostsResolver
     Post.all
   end
 
-  def self.show(id)
+  def self.find(id)
     Post[id]
+  end
+
+  def self.find_by(field, field_name)
+    Post.where("#{field_name}": field)
   end
 end
