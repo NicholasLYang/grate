@@ -1,6 +1,7 @@
 require_relative '../types/query_type'
 require 'graphql'
-class Sequel::Model  
+class Sequel::Model
+  include GraphQL::Schema::Member::GraphQLTypeNames 
   def self.queryable_on(model, field_name, field_type)
     model_name = model.to_s.downcase
     if field_name == :id
