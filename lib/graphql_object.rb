@@ -7,14 +7,22 @@ class GraphQL::Schema::Object
   def self.is_valid_type_name
     self.to_s.chars.last(4).join == 'Type'
   end
+
+  def self.get_controller(model_name)
+    controller_name = "#{model_name.pluralize}Controller"
+    Object.const_get(controller_name)
+  end
+  
   def self.queryable_on(field_name, field_type)
     raise NameError,
           "#{self} is invalid type name. Types must end in -Type" unless is_valid_type_name
+
+    # Gets all the various model, type and controller names.
     model = self.to_s.chomp('Type')
     type_name = self
     model_name = model.downcase
-    controller_name = "#{model_name.pluralize.capitalize}Controller"
-    controller = Object.const_get(controller_name)
+    controller = get_controller(model)
+    
     if field_name == :id
       query_name = function_name = model_name
       return_type = type_name
@@ -23,6 +31,7 @@ class GraphQL::Schema::Object
       function_name = "#{model_name}_by_#{field_name}"
       return_type = [type_name]
     end
+    
     QueryType.class_eval do
       field query_name,
             return_type,
