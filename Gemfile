@@ -7,6 +7,5 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem 'graphql'
 gem 'sequel'
 gem 'pg'
-gem 'agoo'
 gem 'dotenv'
 gem 'activesupport'
