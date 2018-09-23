@@ -1,5 +1,5 @@
 development:
-  database: lattice-dev
+  database: <%= "#{name}_database" %>
   username: nicholas
   host: localhost
-  password: <%= ENV["DATABASE_PASSWORD"] %>  
+  password: <%= '<%= ENV["DATABASE_PASSWORD"] %>' %>  

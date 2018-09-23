@@ -1,11 +1,6 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem 'graphql'
-gem 'sequel'
-gem 'pg'
-gem 'dotenv'
-gem 'activesupport'
+# Specify your gem's dependencies in lattice.gemspec
+gemspec
