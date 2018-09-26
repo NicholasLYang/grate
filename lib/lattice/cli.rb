@@ -1,27 +1,8 @@
 require 'thor'
-require 'find'
+require_relative './new_project.rb'
 module Lattice
-  class CLI < Thor::Group
-    include Thor::Actions
-
-    argument :name
-
-    def self.source_root
-      File.dirname(__FILE__)
-    end
-
-    def create_model_file
-      templates_dir = File.join(__dir__, "..", "..", 'templates')
-      Find.find(templates_dir) do |file|
-        case File.extname(file)
-        when ".tt"
-          template(file, File.join(Dir.pwd, file.gsub(/.*templates/, "").gsub(".tt", "")))
-        when /\.[A-Za-z]+/
-          template(file, File.join(Dir.pwd, file.gsub(/.*templates/, "")))
-        end
-      end
-
-    end
+  class CLI < Thor
+    register(Lattice::NewProject, 'new', 'new NAME', 'Creates a new project')
   end
 end
-
+  

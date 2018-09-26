@@ -26,4 +26,4 @@ class <%= name.capitalize %>Application
   end
 end
 
-run LatticeApplication.new
+run <%= name.capitalize %>Application.new
