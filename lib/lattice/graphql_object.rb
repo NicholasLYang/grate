@@ -1,3 +1,4 @@
+require 'graphql'
 class GraphQL::Schema::Object
   include GraphQL::Schema::Member::GraphQLTypeNames
 
