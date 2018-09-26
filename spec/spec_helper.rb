@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "lattice"
+require "grate"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

@@ -1,39 +1,39 @@
-# Lattice
+# Grate
 
-Lattice is a GraphQL framework inspired by Rails. Lattice aims to make
+Grate is a GraphQL framework inspired by Rails. Grate aims to make
 writing GraphQL APIs as simple and consistent as possible. Therefore,
-Lattice applies the principles of least surprise and developer happiness.
+Grate applies the principles of least surprise and developer happiness.
 
-But enough buzzwords, what does Lattice actually do? Lattice uses
+But enough buzzwords, what does Grate actually do? Grate uses
 Ruby's metaprogramming features to add a domain specific language that
 allows you to automatically make queries on certain types.
 
 For instance, if you have an Article type, you can write `queryable_on
-:title, String` and Lattice will automatically create an
+:title, String` and Grate will automatically create an
 `ArticleByTitle` query for you!
 
 ## Installation
 
-You can install lattice using the following:
+You can install grate using the following:
 
-    $ gem install lattice
+    $ gem install grate
 	
 To generate a new project, make a directory, then run
 
-    $ lattice new NAME
+    $ grate new NAME
 	
 All the necessary files will be generated.
 
 ## Development
 
-Lattice is build using Rack, so all you have to do to run your Lattice application is run 
+Grate is build using Rack, so all you have to do to run your Grate application is run 
 
     $ rackup
 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-https://github.com/nicholaslyang/lattice. This project is intended to
+https://github.com/nicholaslyang/grate. This project is intended to
 be a safe, welcoming space for collaboration, and contributors are
 expected to adhere to the [Contributor
 Covenant](http://contributor-covenant.org) code of conduct.
@@ -44,7 +44,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Lattice project’s codebases, issue
+Everyone interacting in the Grate project’s codebases, issue
 trackers, chat rooms and mailing lists is expected to follow the [code
 of
-conduct](https://github.com/nicholaslyang/lattice/blob/master/CODE_OF_CONDUCT.md).
+conduct](https://github.com/nicholaslyang/grate/blob/master/CODE_OF_CONDUCT.md).

@@ -2,7 +2,7 @@ require 'dotenv/load'
 require 'json'
 require 'sequel'
 require 'graphql'
-require 'lattice'
+require 'grate'
 
 # Ideally should move off this, but it's so damn useful
 require 'active_support/inflector'

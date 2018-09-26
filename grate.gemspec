@@ -1,17 +1,17 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "lattice/version"
+require "grate/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "lattice"
-  spec.version       = Lattice::VERSION
+  spec.name          = "grate"
+  spec.version       = Grate::VERSION
   spec.authors       = ["Nicholas Yang"]
   spec.email         = ["ny585@nyu.edu"]
 
   spec.summary       = %q{A compact but effective GraphQL framework}
-  spec.description   = %q{Lattice is a framework that allows you to use a declarative, compact DSL to design GraphQL APIs quickly and effectively}
-  spec.homepage      = "https://lattice.github.io"
+  spec.description   = %q{Grate is a framework that allows you to use a declarative, compact DSL to design GraphQL APIs quickly and effectively}
+  spec.homepage      = "https://grate.github.io"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

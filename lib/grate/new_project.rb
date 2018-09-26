@@ -1,5 +1,5 @@
 require 'find'
-module Lattice
+module Grate
   class NewProject < Thor::Group
     include Thor::Actions
 
