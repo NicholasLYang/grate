@@ -31,13 +31,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", "~> 10.0"  
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_dependency 'graphql'
-  spec.add_dependency 'sequel'
-  spec.add_dependency 'thor'
-  spec.add_dependency 'pg'
-  spec.add_dependency 'dotenv'
-  spec.add_dependency 'activesupport'
+  spec.add_development_dependency 'thor', '~> 0.20.0'
+  spec.add_dependency 'graphql', '~> 1.8', '>= 1.8.10'
+  spec.add_dependency 'sequel', '~> 5.12', '>= 5.12.0'
+  spec.add_dependency 'pg', '~> 1.1', '>= 1.1.3'
+  spec.add_dependency 'dotenv', '~> 2.5', '>= 2.5.0'
+  spec.add_dependency 'activesupport', '~> 5.2', '>= 5.2.1'
 
 end

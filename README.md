@@ -1,38 +1,42 @@
 # Lattice
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/lattice`. To experiment with that code, run `bin/console` for an interactive prompt.
+Lattice is a GraphQL framework inspired by Rails. Lattice aims to make
+writing GraphQL APIs as simple and consistent as possible. Therefore,
+Lattice applies the principles of least surprise and developer happiness.
 
-TODO: Delete this and the text above, and describe your gem
+But enough buzzwords, what does Lattice actually do? Lattice uses
+Ruby's metaprogramming features to add a domain specific language that
+allows you to automatically make queries on certain types.
+
+For instance, if you have an Article type, you can write `queryable_on
+:title, String` and Lattice will automatically create an
+`ArticleByTitle` query for you!
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'lattice'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+You can install lattice using the following:
 
     $ gem install lattice
+	
+To generate a new project, make a directory, then run
 
-## Usage
-
-TODO: Write usage instructions here
+    $ lattice new NAME
+	
+All the necessary files will be generated.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Lattice is build using Rack, so all you have to do to run your Lattice application is run 
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+    $ rackup
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/lattice. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/nicholaslyang/lattice. This project is intended to
+be a safe, welcoming space for collaboration, and contributors are
+expected to adhere to the [Contributor
+Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +44,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Lattice project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/lattice/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Lattice project’s codebases, issue
+trackers, chat rooms and mailing lists is expected to follow the [code
+of
+conduct](https://github.com/nicholaslyang/lattice/blob/master/CODE_OF_CONDUCT.md).

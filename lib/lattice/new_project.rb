@@ -1,4 +1,3 @@
-require 'thor'
 require 'find'
 module Lattice
   class NewProject < Thor::Group
@@ -21,7 +20,7 @@ module Lattice
         end
       end
     end
-    register(Lattice::NewProject, 'new', 'new NAME', 'Creates a new project')
+
   end
 end
 

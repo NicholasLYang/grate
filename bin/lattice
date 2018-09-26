@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'lattice'
-Lattice::NewProject.start(ARGV)
+require_relative '../lib/lattice'
+Lattice::CLI.start(ARGV)
