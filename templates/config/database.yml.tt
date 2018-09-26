@@ -2,4 +2,4 @@ development:
   database: <%= "#{name}_database" %>
   username: nicholas
   host: localhost
-  password: <%= '<%= ENV["DATABASE_PASSWORD"] %>' %>  
+  password:
