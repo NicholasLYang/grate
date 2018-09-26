@@ -19,13 +19,18 @@ module Lattice
       Find.find(templates_dir) do |file|
         case File.extname(file)
         when ".tt"
-          template(file, File.join(Dir.pwd, name, file.gsub(/.*templates/, "").gsub(".tt", "")))
+          template(file, File.join(Dir.pwd, name, to_relative(file).gsub(".tt", "")))
         when ".dot"
-          template(file, File.join(Dir.pwd, name, ".#{name.chomp(".dot")}"))
+          template(file, File.join(Dir.pwd, name, ".#{to_relative(file).chomp(".dot")}"))
         when /\.[A-Za-z]+/
-          template(file, File.join(Dir.pwd, name, file.gsub(/.*templates/, "")))
+          template(file, File.join(Dir.pwd, name, to_relative(file)))
         end
       end
+    end
+
+    private 
+    def to_relative(path)
+      path.gsub(/.*templates\//, "")
     end
 
   end
