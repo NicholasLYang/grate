@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require File.expand_path('lib/lattice/cli', Dir.pwd)
+require 'lattice'
 Lattice::CLI.start(ARGV)

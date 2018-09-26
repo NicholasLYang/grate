@@ -2,6 +2,7 @@ require 'dotenv/load'
 require 'json'
 require 'sequel'
 require 'graphql'
+require 'lattice'
 
 # Ideally should move off this, but it's so damn useful
 require 'active_support/inflector'
@@ -13,7 +14,6 @@ require_relative './db/database'
 require_relative './app/types/query_type'
 require_relative './app/models/application_model'
 require_relative './app/controllers/application_controller.rb'
-require_relative './lib/graphql_object.rb'
 
 require_relative './app/models/post'
 

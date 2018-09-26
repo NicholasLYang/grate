@@ -7,16 +7,17 @@ module Lattice
     argument :name
 
     def self.source_root
-      File.dirname(File.join(Dir.pwd, "lattice"))
+      File.dirname(__FILE__)
     end
 
     def create_model_file
-      Find.find(File.join(Dir.pwd, 'templates')) do |file|
+      templates_dir = File.join(__dir__, "..", "..", 'templates')
+      Find.find(templates_dir) do |file|
         case File.extname(file)
         when ".tt"
-          template(file, file.gsub("/templates", "").gsub(".tt", ""))
+          template(file, File.join(Dir.pwd, file.gsub(/.*templates/, "").gsub(".tt", "")))
         when /\.[A-Za-z]+/
-          template(file, file.gsub("/templates", ""))
+          template(file, File.join(Dir.pwd, file.gsub(/.*templates/, "")))
         end
       end
 
