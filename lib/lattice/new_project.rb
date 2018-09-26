@@ -20,8 +20,8 @@ module Lattice
         case File.extname(file)
         when ".tt"
           template(file, File.join(Dir.pwd, name, file.gsub(/.*templates/, "").gsub(".tt", "")))
-        when ".env"
-          template(file, File.join(Dir.pwd, name, ".env"))
+        when ".dot"
+          template(file, File.join(Dir.pwd, name, ".#{name.chomp(".dot")}"))
         when /\.[A-Za-z]+/
           template(file, File.join(Dir.pwd, name, file.gsub(/.*templates/, "")))
         end
