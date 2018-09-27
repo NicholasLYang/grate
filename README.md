@@ -1,5 +1,7 @@
 # Grate
 
+> It'll be grate
+
 Grate is a GraphQL framework inspired by Rails. Grate aims to make
 writing GraphQL APIs as simple and consistent as possible. Therefore,
 Grate applies the principles of least surprise and developer happiness.
