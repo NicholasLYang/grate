@@ -1,5 +1,5 @@
 development:
-  database: <%= "#{name}_database" %>
+  database: <%= "#{@snake_name}_database" %>
   username: nicholas
   host: localhost
   password:

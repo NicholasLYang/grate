@@ -17,7 +17,7 @@ require_relative './app/controllers/application_controller.rb'
 require_relative './app/schema'
 
 
-class <%= classify(name)%>Application
+class <%= @camel_name %>Application
   def call(env)
     req = Rack::Request.new(env)
     params = JSON.parse(req.body.read)
@@ -26,4 +26,4 @@ class <%= classify(name)%>Application
   end
 end
 
-run <%= classify(name) %>Application.new
+run <%= @camel_name %>Application.new

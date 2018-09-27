@@ -14,6 +14,10 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://grate.github.io"
   spec.license       = "MIT"
 
+  spec.metadata      = {
+    "changelog_uri" => "https://github.com/nicholaslyang/grate/blob/master/CHANGELOG.md",
+  }
+
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end

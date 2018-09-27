@@ -16,7 +16,8 @@ module Grate
     end
     
     def create_files
-      @name = classify(name)
+      @camel_name = classify(name)
+      @snake_name = snake_case(name)
       templates_dir = File.join(__dir__, "..", "..", 'templates')
       Find.find(templates_dir) do |file|
         case File.extname(file)
@@ -35,6 +36,9 @@ module Grate
       path.gsub(/.*templates\//, "")
     end
 
+    def snake_case(name)
+      name.gsub("_", "-").underscore
+    end
     def classify(name)
       name.gsub("-", "_").camelize
     end
