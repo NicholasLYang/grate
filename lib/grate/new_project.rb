@@ -1,4 +1,5 @@
 require 'find'
+require 'active_support/inflector'
 module Grate
   class NewProject < Thor::Group
     include Thor::Actions
@@ -15,6 +16,7 @@ module Grate
     end
     
     def create_files
+      @name = classify(name)
       templates_dir = File.join(__dir__, "..", "..", 'templates')
       Find.find(templates_dir) do |file|
         case File.extname(file)
@@ -33,6 +35,9 @@ module Grate
       path.gsub(/.*templates\//, "")
     end
 
+    def classify(name)
+      name.gsub("-", "_").camelize
+    end
   end
 end
 

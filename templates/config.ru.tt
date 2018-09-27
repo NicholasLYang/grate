@@ -17,7 +17,7 @@ require_relative './app/controllers/application_controller.rb'
 require_relative './app/schema'
 
 
-class <%= name.capitalize %>Application
+class <%= classify(name)%>Application
   def call(env)
     req = Rack::Request.new(env)
     params = JSON.parse(req.body.read)
@@ -26,4 +26,4 @@ class <%= name.capitalize %>Application
   end
 end
 
-run <%= name.capitalize %>Application.new
+run <%= classify(name) %>Application.new

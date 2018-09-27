@@ -1,7 +1,9 @@
+require 'pathname'
 module Grate
-  class Server
+  class Server < Thor::Group
+
     def run_server
-      `rackup` if Pathname.exist?(File.join(Dir.pwd, 'config.ru'))
+      `rackup` if FileTest.exist?(File.join(Dir.pwd, 'config.ru'))
     end
   end
 end
