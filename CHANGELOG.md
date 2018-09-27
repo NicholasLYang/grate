@@ -2,6 +2,16 @@
 
 All changes will be documented in this file
 
+## [0.1.2]
+### Added
+- Added a `server` command to grate cli.
+- Added a bin directory to locally run grate cli.
+
+### Changed
+- Renamed `ProjectNameApplication` to just `Application` (to make
+  running server easier)
+- Moved application to `config/application.rb`
+
 ## [0.1.1]
 ### Changed
 - Fixed casing for initial project generation. Before, `snake-case`

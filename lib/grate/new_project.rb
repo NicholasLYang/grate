@@ -13,34 +13,41 @@ module Grate
 
     def create_directory
       Dir.mkdir name
+      @project_dir = File.join(Dir.pwd, name)
     end
     
     def create_files
       @camel_name = classify(name)
       @snake_name = snake_case(name)
-      templates_dir = File.join(__dir__, "..", "..", 'templates')
+      templates_dir = File.join(__dir__, '..', '..', 'templates')
       Find.find(templates_dir) do |file|
         case File.extname(file)
-        when ".tt"
-          template(file, File.join(Dir.pwd, name, to_relative(file).gsub(".tt", "")))
-        when ".dot"
-          template(file, File.join(Dir.pwd, name, ".#{to_relative(file).chomp(".dot")}"))
+        when '.tt'
+          template(file, File.join(@project_dir, to_relative(file).gsub('.tt', '')))
+        when '.dot'
+          template(file, File.join(@project_dir, ".#{to_relative(file).chomp('.dot')}"))
         when /\.[A-Za-z]+/
-          template(file, File.join(Dir.pwd, name, to_relative(file)))
+          template(file, File.join(@project_dir, to_relative(file)))
         end
       end
     end
 
+    def copy_bin
+      bin_dir = File.join(__dir__, '..', '..', 'bin')
+      
+      FileUtils.copy_entry(bin_dir, File.join(@project_dir, 'bin'))
+    end
+
     private 
     def to_relative(path)
-      path.gsub(/.*templates\//, "")
+      path.gsub(/.*templates\//, '')
     end
 
     def snake_case(name)
-      name.gsub("_", "-").underscore
+      name.gsub('_', '-').underscore
     end
     def classify(name)
-      name.gsub("-", "_").camelize
+      name.gsub('-', '_').camelize
     end
   end
 end

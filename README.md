@@ -40,9 +40,13 @@ be a safe, welcoming space for collaboration, and contributors are
 expected to adhere to the [Contributor
 Covenant](http://contributor-covenant.org) code of conduct.
 
+Please add any changes to the
+[CHANGELOG](https://github.com/nicholaslyang/grate/blob/master/CHANGELOG.md).
+
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [MIT
+License](https://opensource.org/licenses/MIT).
 
 ## Code of Conduct
 
