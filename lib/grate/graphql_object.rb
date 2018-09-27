@@ -5,6 +5,7 @@ class GraphQL::Schema::Object
   def self.camelize(name)
     name.split('_').collect(&:capitalize).join
   end
+  
   def self.is_valid_type_name
     self.to_s.chars.last(4).join == 'Type'
   end

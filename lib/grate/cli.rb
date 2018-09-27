@@ -1,6 +1,6 @@
 require 'thor'
-require_relative './new_project'
-require_relative './server'
+require_relative './cli/generators/new_project'
+require_relative './cli/server'
 module Grate
   class CLI < Thor
     register(Grate::NewProject, 'new', 'new NAME', 'Creates a new project')
