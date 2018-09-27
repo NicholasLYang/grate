@@ -2,17 +2,30 @@
 
 > It'll be grate
 
+## About
+
 Grate is a GraphQL framework inspired by Rails. Grate aims to make
 writing GraphQL APIs as simple and consistent as possible. Therefore,
 Grate applies the principles of least surprise and developer happiness.
 
-But enough buzzwords, what does Grate actually do? Grate uses
-Ruby's metaprogramming features to add a domain specific language that
-allows you to automatically make queries on certain types.
+Grate adapts Rails' MVC architecture to GraphQL, in the form of MTC:
+Model Type Controller. On top of this, Grate utilizes Ruby's
+metaprogramming features to add a domain specific language that allows
+you to automatically make queries on certain types.
 
-For instance, if you have an Article type, you can write `queryable_on
-:title, String` and Grate will automatically create an
-`ArticleByTitle` query for you!
+But enough buzzwords, what does Grate actually do? Basically, Grate
+lets you write: 
+```
+class PostType < GraphQL::Schema::Object
+# Usual GraphQL Ruby stuff...
+	queryable_on :title, String
+end
+```
+
+And Grate will automatically generate a `postByTitle(title: String)`
+query! Want more complicated queries? Grate lets you define the
+signature in the type file, then write the corresponding code in the
+controller and model.
 
 ## Installation
 
