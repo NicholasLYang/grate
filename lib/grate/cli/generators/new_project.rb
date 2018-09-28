@@ -15,11 +15,24 @@ module Grate
       Dir.mkdir name
       @project_dir = File.join(Dir.pwd, name)
     end
+
+    def get_lib_directory
+      @library_dir = File.join(
+        __dir__,
+        '..',
+        '..',
+        '..',
+        '..',
+      )
+    end
     
     def create_files
       @camel_name = classify(name)
       @snake_name = snake_case(name)
-      templates_dir = File.join(__dir__, '..', '..', 'templates')
+      templates_dir = File.join(
+        @library_dir,
+        'templates'
+      )
       Find.find(templates_dir) do |file|
         case File.extname(file)
         when '.tt'
@@ -33,7 +46,7 @@ module Grate
     end
 
     def copy_bin
-      bin_dir = File.join(__dir__, '..', '..', 'bin')
+      bin_dir = File.join(@library_dir, 'bin')
       
       FileUtils.copy_entry(bin_dir, File.join(@project_dir, 'bin'))
     end
