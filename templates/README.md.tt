@@ -1,4 +1,4 @@
-# <%= name.capitalize %>
+# <%= name.split(/_|-/).map(&:capitalize).join(" ") %>
 
 ## About
 
