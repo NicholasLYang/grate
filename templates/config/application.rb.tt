@@ -6,16 +6,17 @@ require 'grate'
 
 # Ideally should move off this, but it's so damn useful
 require 'active_support/inflector'
+require 'active_support'
 
 # Load the database first
 require_relative '../db/database'
 
 # Then load all the abstract
-require_relative '../app/types/query_type'
+autoload :QueryType
+
 require_relative '../app/models/application_model'
 require_relative '../app/controllers/application_controller.rb'
 require_relative '../app/schema'
-
 
 class Application
   def call(env)

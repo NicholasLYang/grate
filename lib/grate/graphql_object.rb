@@ -14,6 +14,22 @@ class GraphQL::Schema::Object
     controller_name = "#{model_name.pluralize}Controller"
     Object.const_get(controller_name)
   end
+
+  def self.list(options = [])
+    model = self.to_s.chomp('Type')
+    field_name = model.downcase.pluralize 
+    type_name = [self]
+    controller = get_controller(model).new
+    QueryType.class_eval do
+      field field_name, type_name, null: false do
+        description "Get all #{model.pluralize}"
+      end
+
+      define_method field_name do
+        controller.all
+      end
+    end
+  end
   
   def self.queryable_on(field_name, field_type)
     raise NameError,
@@ -23,8 +39,8 @@ class GraphQL::Schema::Object
     model = self.to_s.chomp('Type')
     type_name = self
     model_name = model.downcase
-    controller = get_controller(model)
-    
+    controller = get_controller(model).new
+
     if field_name == :id
       query_name = function_name = model_name
       return_type = type_name
