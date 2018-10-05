@@ -1,2 +1,10 @@
 class ApplicationController
+  # Just gives a friendly error message if you forget to implement a
+  # controller method
+  def method_missing(name, *args, &block)
+    GraphQL::ExecutionError.new(
+      "No method #{name} for controller #{self.class.name}."\
+      " Did you define it?"
+    )
+  end
 end
