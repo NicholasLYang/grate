@@ -1,10 +1,8 @@
 require 'sequel'
-module Grate
-  class Db < Thor::Group
-    subcommand "create", Create
-  end
+require 'thor'
 
-  class Create < Thor::Group
+module Grate
+  class CreateDb < Thor::Group
     argument :name
 
     def create_db

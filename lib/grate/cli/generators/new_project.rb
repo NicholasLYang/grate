@@ -54,7 +54,7 @@ module Grate
 
     private 
     def to_relative(path)
-      path.gsub(/.*templates\//, '')
+      path.gsub(/.*templates\/new\//, '')
     end
 
     def snake_case(name)
