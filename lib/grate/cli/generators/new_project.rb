@@ -31,7 +31,8 @@ module Grate
       @snake_name = snake_case(name)
       templates_dir = File.join(
         @library_dir,
-        'templates'
+        'templates',
+        'new'
       )
       Find.find(templates_dir) do |file|
         case File.extname(file)
