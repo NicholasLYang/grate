@@ -1,8 +1,8 @@
 require 'find'
 require 'active_support/inflector'
+require_relative './generator'
 module Grate
-  class NewProject < Thor::Group
-    include Thor::Actions
+  class NewProject < Generatorp
 
     argument :name
 
@@ -27,8 +27,8 @@ module Grate
     end
     
     def create_files
-      @camel_name = classify(name)
-      @snake_name = snake_case(name)
+      @camel_name = self.classify(name)
+      @snake_name = self.snake_case(name)
       templates_dir = File.join(
         @library_dir,
         'templates',
@@ -37,11 +37,11 @@ module Grate
       Find.find(templates_dir) do |file|
         case File.extname(file)
         when '.tt'
-          template(file, File.join(@project_dir, to_relative(file).gsub('.tt', '')))
+          template(file, File.join(@project_dir, self.to_relative(file).gsub('.tt', '')))
         when '.dot'
-          template(file, File.join(@project_dir, ".#{to_relative(file).chomp('.dot')}"))
+          template(file, File.join(@project_dir, ".#{self.to_relative(file).chomp('.dot')}"))
         when /\.[A-Za-z]+/
-          template(file, File.join(@project_dir, to_relative(file)))
+          template(file, File.join(@project_dir, self.to_relative(file)))
         end
       end
     end
@@ -52,17 +52,6 @@ module Grate
       FileUtils.copy_entry(bin_dir, File.join(@project_dir, 'bin'))
     end
 
-    private 
-    def to_relative(path)
-      path.gsub(/.*templates\/new\//, '')
-    end
-
-    def snake_case(name)
-      name.gsub('_', '-').underscore
-    end
-    def classify(name)
-      name.gsub('-', '_').camelize
-    end
   end
 end
 
