@@ -8,7 +8,7 @@ class Generator < Thor::Group
   def self.snake_case(name)
     name.gsub('_', '-').underscore
   end
-  def self.classify(name)
+  def self.camel_case(name)
     name.gsub('-', '_').camelize
   end
 end

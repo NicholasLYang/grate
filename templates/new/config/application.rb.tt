@@ -12,7 +12,7 @@ require 'active_support'
 require_relative '../db/database'
 
 # Then load all the abstract
-autoload :QueryType
+require_relative '../app/types/query_type'
 
 require_relative '../app/models/application_model'
 require_relative '../app/controllers/application_controller.rb'

@@ -2,7 +2,7 @@ require 'find'
 require 'active_support/inflector'
 require_relative './generator'
 module Grate
-  class NewProject < Generatorp
+  class NewProject < Generator
 
     argument :name
 
@@ -27,8 +27,8 @@ module Grate
     end
     
     def create_files
-      @camel_name = self.classify(name)
-      @snake_name = self.snake_case(name)
+      @camel_name = self.class.camel_case(name)
+      @snake_name = self.class.snake_case(name)
       templates_dir = File.join(
         @library_dir,
         'templates',
@@ -37,11 +37,11 @@ module Grate
       Find.find(templates_dir) do |file|
         case File.extname(file)
         when '.tt'
-          template(file, File.join(@project_dir, self.to_relative(file).gsub('.tt', '')))
+          template(file, File.join(@project_dir, self.class.to_relative(file).gsub('.tt', '')))
         when '.dot'
-          template(file, File.join(@project_dir, ".#{self.to_relative(file).chomp('.dot')}"))
+          template(file, File.join(@project_dir, ".#{self.class.to_relative(file).chomp('.dot')}"))
         when /\.[A-Za-z]+/
-          template(file, File.join(@project_dir, self.to_relative(file)))
+          template(file, File.join(@project_dir, self.class.to_relative(file)))
         end
       end
     end

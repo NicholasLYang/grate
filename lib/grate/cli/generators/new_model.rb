@@ -21,9 +21,11 @@ module Grate
       )
     end
 
-    def create_file
+    def create_model
+      @camel_name = self.class.camel_case(name)
+      @snake_name = self.class.snake_case(name)
       model_template = File.join(@library_dir, 'templates', 'scaffolds', 'model.rb.tt')
-      template(model_template, self.snake_case(name))
+      template(model_template, "#{@snake_name}.rb")
     end
   end
 end
