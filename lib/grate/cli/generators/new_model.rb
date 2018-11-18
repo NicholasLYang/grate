@@ -1,4 +1,3 @@
-require_relative './generator'
 require 'find'
 
 module Grate
