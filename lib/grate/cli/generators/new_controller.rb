@@ -24,10 +24,11 @@ module Grate
     end
 
     def create_model
-      @camel_name = self.class.camel_case(name)
-      @snake_name = self.class.snake_case(name)
+      @name = name.pluralize
+      @camel_name = self.class.camel_case(@name)
+      @snake_name = self.class.snake_case(@name)
       controller_template = File.join(@library_dir, 'templates', 'scaffolds', 'controller.rb.tt')
-      template(controller_template, File.join('app', 'models', "#{@snake_name}_controller.rb"))
+      template(controller_template, File.join('app', 'controllers', "#{@snake_name}_controller.rb"))
     end
   end
 end

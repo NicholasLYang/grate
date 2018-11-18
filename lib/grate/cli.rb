@@ -1,4 +1,5 @@
 require 'thor'
+require 'active_support/inflector'
 require_relative './cli/generators'
 require_relative './cli/server'
 require_relative './cli/db'
