@@ -1,4 +1,4 @@
-class Generator < Thor::Group
+class BaseGenerator < Thor::Group
   include Thor::Actions
   
   def self.to_relative(path)

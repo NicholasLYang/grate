@@ -2,10 +2,13 @@ require_relative './generator'
 require 'find'
 
 module Grate
-  class NewModel < Generator
-
+  class NewModel < BaseGenerator
     argument :name
     argument :field, optional: true
+
+    def self.source_root
+      File.dirname(__FILE__)
+    end
 
     def get_project_directory
       @project_dir = File.join(Dir.pwd, name)
@@ -25,7 +28,7 @@ module Grate
       @camel_name = self.class.camel_case(name)
       @snake_name = self.class.snake_case(name)
       model_template = File.join(@library_dir, 'templates', 'scaffolds', 'model.rb.tt')
-      template(model_template, "#{@snake_name}.rb")
+      template(model_template, File.join('app', 'models', "#{@snake_name}.rb"))
     end
   end
 end

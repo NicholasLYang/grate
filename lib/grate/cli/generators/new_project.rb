@@ -1,8 +1,9 @@
 require 'find'
 require 'active_support/inflector'
-require_relative './generator'
+require_relative './base_generator'
+
 module Grate
-  class NewProject < Generator
+  class NewProject < BaseGenerator
 
     argument :name
 
