@@ -30,8 +30,11 @@ class GraphQL::Schema::Object
       end
     end
   end
-  
-  def self.queryable_on(field_name, field_type)
+
+  ##
+  # queryable_on
+  # 
+  def self.queryable_on(field_name, field_type, options = {})
     raise NameError,
           "#{self} is invalid type name. Types must end in -Type" unless is_valid_type_name
 
@@ -41,6 +44,7 @@ class GraphQL::Schema::Object
     model_name = model.downcase
     controller = get_controller(model).new
 
+    # Adds a special case for id cause modelById is kinda redundant
     if field_name == :id
       query_name = function_name = model_name
       return_type = type_name
@@ -49,17 +53,21 @@ class GraphQL::Schema::Object
       function_name = "#{model_name}_by_#{field_name}"
       return_type = [type_name]
     end
+
+    controller_method = options.method || :find_by
     
     QueryType.class_eval do
       field query_name,
             return_type,
             null: true do
         description "Query #{model} by #{field_name}"
-        argument field_name, field_type, required: true
+        argument field_name, field_type, required: options.required? || true
       end
       define_method function_name do |query_args|
-        controller.find_by(query_args[field_name], field_name)
+        controller.public_send(controller_method, query_args[field_name], field_name)
       end
     end
   end
+
+  private_class_method :get_controller, :camelize, :is_valid_type_name
 end

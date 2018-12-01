@@ -1,7 +1,18 @@
+require 'erb'
+require 'date'
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "grate/version"
+
+build_date_template = ERB.new <<-EOF
+module Grate
+  BUILD_DATE = "<%= DateTime.now.to_s %>"
+end
+EOF
+build_date_path = './lib/grate/build_date.rb'
+File.delete(build_date_path) if File.exist?(build_date_path)
+File.open(build_date_path, 'w+') { |file| file.write(build_date_template.result)}
 
 Gem::Specification.new do |spec|
   spec.name          = "grate"
